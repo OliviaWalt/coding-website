@@ -5,6 +5,8 @@ const timeDisplay = document.getElementById('time');
 const errorsDisplay = document.getElementById('errors');
 const bookSelector = document.getElementById('book-selector');
 
+
+
 // these are the itital values being set at zero
 let startTime;
 let errors = 0;
