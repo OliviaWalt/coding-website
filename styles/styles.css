@@ -279,6 +279,9 @@ h1{
 
 }
 
+h1 {
+  color: black;
+}
 
 .body {
   font-family: monospace;
