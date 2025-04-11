@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="pythonpage.html">Python Projects</a>
+            <a href="htmlandcss.html">HTML and CSS Projects</a>
+            <a href="arduinopage.html">Arduino Projects</a>
+            <a href="typingpage.html">About Me</a>
+        </nav>
+    </header>
+    <div class="container">
+    <select id="book-selector">
+        <option value="sample">Sample Text</option>
+        <option value="book1">Book 1</option>
+        <option value="book2">Book 2</option>
+    </select>
+    <div class="text-display">
+        <p id="displayed-text"></p>
+    </div>
+    <textarea id="user-input" placeholder="Start typing here..."></textarea>
+    <div class="stats">
+        <p>Time: <span id="time">0</span>s</p>
+        <p>Errors: <span id="errors">0</span></p>
+    </div>
+    </div>
+    <div class="container">
+        <div class="text-display">
+            <p id="displayed-text"></p>
+        </div>
+        <textarea id="user-input" placeholder="Start typing here..."></textarea>
+        <div class="stats">
+            <p>Time: <span id="time">0</span>s</p>
+            <p>Errors: <span id="errors">0</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+<!-- Explanation:
+<!DOCTYPE html>: Declares the document type.
+<head>: Contains metadata (title, CSS link, etc.).
+<link rel="stylesheet" href="style.css">: Links our stylesheet.
+<body>: Contains the visible content of the page.
+<div class="container">: A main container to hold all our elements.
+<div class="text-display">: This div will display the text for the user to type.
+<p id="displayed-text">: This paragraph will hold the text that the user will type.
+<textarea id="user-input">: This is where the user will type their input.
+<div class = "stats">: this div will hold our stats.
+<script src="script.js">: Links our JavaScript file. -->
