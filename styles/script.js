@@ -14,19 +14,35 @@ let text = ""; // Initialize text variable
 
 const bookTexts = {
     sample: "This is some sample text. Type it as fast as you can!",
-    book1: "This is the text for book 1. You can put any text here.",
+    book1: 'text/book1.txt',
     book2: "And here is the text for book number 2. Add your own books!",
 };
 
-function loadText(bookKey) {
-    text = bookTexts[bookKey] || "";
-    displayHighlightedText("");
-    userInput.value = "";
-    userInput.disabled = false;
-    startTime = null;
-    errors = 0;
-    errorsDisplay.textContent = errors;
-    timeDisplay.textContent = "0";
+async function loadText(bookKey) {
+    const filePath = bookFilePaths[bookKey];
+    if (filePath) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            text = await response.text();
+            displayHighlightedText("");
+            userInput.value = "";
+            userInput.disabled = false;
+            startTime = null;
+            errors = 0;
+            errorsDisplay.textContent = errors;
+            timeDisplay.textContent = "0";
+            displayHighlightedText("");
+        } catch (error) {
+            console.error("Could not load text:", error);
+            displayedText.textContent = "Error loading text.";
+        }
+    } else {
+        text = "";
+        displayedText.textContent = "";
+    }
 }
 
 function displayHighlightedText(inputText) {
