@@ -11,7 +11,7 @@ let text = "";
 
 const bookFilePaths = {
     sample: 'texts/sample.txt', // Path to your sample text file
-    book1: 'texts/book1.txt',   // Path to your book 1 text file
+    book1: 'texts/intro.txt',   // Path to your book 1 text file
     book2: 'texts/book2.txt'    // Path to your book 2 text file
 };
 
