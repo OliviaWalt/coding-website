@@ -14,7 +14,7 @@ let text = ""; // Initialize text variable
 
 const bookTexts = {
     sample: "This is some sample text. Type it as fast as you can!",
-    intro: 'text/intro.txt',
+    intro: "This is my apt at fixing the code before I added refrance",
     book2: "And here is the text for book number 2. Add your own books!",
 };
 
