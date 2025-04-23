@@ -5,17 +5,14 @@ const timeDisplay = document.getElementById('time');
 const errorsDisplay = document.getElementById('errors');
 const bookSelector = document.getElementById('book-selector');
 
-
-
-// these are the itital values being set at zero
 let startTime;
 let errors = 0;
-let text = ""; // Initialize text variable
+let text = "";
 
-const bookTexts = {
-    sample: "This is some sample text. Type it as fast as you can!",
-    intro: "This is my apt at fixing the code before I added refrance",
-    book2: "And here is the text for book number 2. Add your own books!",
+const bookFilePaths = {
+    sample: 'texts/sample.txt', // Path to your sample text file
+    book1: 'texts/book1.txt',   // Path to your book 1 text file
+    book2: 'texts/book2.txt'    // Path to your book 2 text file
 };
 
 async function loadText(bookKey) {
@@ -68,9 +65,8 @@ userInput.addEventListener('input', () => {
 
     const inputText = userInput.value;
     let currentErrors = 0;
-    
-//checks if the thing typed matches the spot in the text, if not it notes it
-     for (let i = 0; i < inputText.length; i++) {
+
+    for (let i = 0; i < inputText.length; i++) {
         if (inputText[i] !== text[i]) {
             currentErrors++;
         }
@@ -80,7 +76,7 @@ userInput.addEventListener('input', () => {
     errorsDisplay.textContent = errors;
     displayHighlightedText(inputText);
 
-   if (inputText === text) {
+    if (inputText === text) {
         const endTime = new Date();
         const timeTaken = (endTime - startTime) / 1000;
         timeDisplay.textContent = timeTaken.toFixed(2);
@@ -88,9 +84,8 @@ userInput.addEventListener('input', () => {
     }
 });
 
-loadText(bookSelector.value); // Load initial text
-
-
+// Load initial text based on the selected option
+loadText(bookSelector.value);
 
 
 
