@@ -5,28 +5,41 @@ const timeDisplay = document.getElementById('time');
 const errorsDisplay = document.getElementById('errors');
 const bookSelector = document.getElementById('book-selector');
 
-
-
-// these are the itital values being set at zero
 let startTime;
 let errors = 0;
-let text = ""; // Initialize text variable
+let text = "";
 
-const bookTexts = {
-    sample: "This is some sample text. Type it as fast as you can!",
-    book1: "This is the text for book 1. You can put any text here.",
-    book2: "And here is the text for book number 2. Add your own books!",
+const bookFilePaths = {
+    sample: 'texts/sample.txt', // Path to your sample text file
+    book1: 'texts/intro.txt',   // Path to your book 1 text file
+    book2: 'texts/book2.txt'    // Path to your book 2 text file
 };
 
-function loadText(bookKey) {
-    text = bookTexts[bookKey] || "";
-    displayHighlightedText("");
-    userInput.value = "";
-    userInput.disabled = false;
-    startTime = null;
-    errors = 0;
-    errorsDisplay.textContent = errors;
-    timeDisplay.textContent = "0";
+async function loadText(bookKey) {
+    const filePath = bookFilePaths[bookKey];
+    if (filePath) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            text = await response.text();
+            displayHighlightedText("");
+            userInput.value = "";
+            userInput.disabled = false;
+            startTime = null;
+            errors = 0;
+            errorsDisplay.textContent = errors;
+            timeDisplay.textContent = "0";
+            displayHighlightedText("");
+        } catch (error) {
+            console.error("Could not load text:", error);
+            displayedText.textContent = "Error loading text.";
+        }
+    } else {
+        text = "";
+        displayedText.textContent = "";
+    }
 }
 
 function displayHighlightedText(inputText) {
@@ -52,9 +65,8 @@ userInput.addEventListener('input', () => {
 
     const inputText = userInput.value;
     let currentErrors = 0;
-    
-//checks if the thing typed matches the spot in the text, if not it notes it
-     for (let i = 0; i < inputText.length; i++) {
+
+    for (let i = 0; i < inputText.length; i++) {
         if (inputText[i] !== text[i]) {
             currentErrors++;
         }
@@ -64,7 +76,7 @@ userInput.addEventListener('input', () => {
     errorsDisplay.textContent = errors;
     displayHighlightedText(inputText);
 
-   if (inputText === text) {
+    if (inputText === text) {
         const endTime = new Date();
         const timeTaken = (endTime - startTime) / 1000;
         timeDisplay.textContent = timeTaken.toFixed(2);
@@ -72,10 +84,5 @@ userInput.addEventListener('input', () => {
     }
 });
 
-loadText(bookSelector.value); // Load initial text
-
-
-
-
-
-
+// Load initial text based on the selected option
+loadText(bookSelector.value);
