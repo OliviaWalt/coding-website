@@ -11,7 +11,7 @@ let text = "";
 
 const bookFilePaths = {
     sample: 'texts/sample.txt', // Path to your sample text file
-    book1: 'texts/intro.txt',   // Path to your book 1 text file
+    book1: 'chapter1.txt', 
     book2: 'texts/book2.txt'    // Path to your book 2 text file
 };
 
@@ -45,13 +45,23 @@ async function loadText(bookKey) {
 function displayHighlightedText(inputText) {
     let highlighted = '';
     for (let i = 0; i < text.length; i++) {
-        if (i < inputText.length && inputText[i] !== text[i]) {
-            highlighted += `<span class="error">${text[i]}</span>`;
+        let char = text[i];
+
+        if (char === '\n') {
+            highlighted += '<br>';
+            continue;
+        }
+
+        if (i < inputText.length && inputText[i] !== char) {
+            highlighted += `<span class="error">${char}</span>`;
         } else {
-            highlighted += text[i];
+            highlighted += char;
         }
     }
+
     displayedText.innerHTML = highlighted;
+
+    displayedText.scrollTop = displayedText.scrollHeight;
 }
 
 bookSelector.addEventListener('change', (event) => {
