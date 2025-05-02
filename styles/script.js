@@ -10,7 +10,7 @@ let errors = 0;
 let text = "";
 
 const bookFilePaths = {
-    sample: 'texts/sample.txt', // Path to your sample text file
+    sample: 'paragraph1.txt', // Path to your sample text file
     book1: 'chapter1.txt', 
     book2: 'texts/book2.txt'    // Path to your book 2 text file
 };
